@@ -1,7 +1,10 @@
 <template>
     <header class="header">
         <div>
-            <img id="multilogo" src="../assets/homepage/icons/multilogo.png">
+            <img class="logo" id="multilogo" src="../assets/homepage/icons/multilogo.png">
+            <img class="logo" id="cathy" src="../assets/homepage/icons/cathy.png">
+            <p class="title" id="title-left">国泰航空</p>
+            <p class="title" id="title-right">多式联运 · 全链条出行</p>
         </div>
     </header>
     <main class="content">
@@ -64,21 +67,46 @@ body {
     top: 0;
     left: 0;
     width: 100%;
-    height: 10vh;
-    background: linear-gradient(30deg, #e2a6a6 0%, #ffffff 40%, #ffffff 60%, #15b3b2 100%);
+    height: 15px;
+    background: #f6f6f2;
     color: white;
     padding: 1px;
-    text-align: center;
     z-index: 1000;
     overflow: hidden;
 }
 
+.header .logo {
+    position: absolute;
+    top: 8px;
+    left: 5px;
+    height: 15px;
+    transform: translate(0%, -50%);
+}
+
 .header #multilogo {
-    position: fixed;
-    top: 3vh;
-    left: 90%;
-    height: 40px;
+    left: 5px;
+}
+
+.header #cathy {
+    height: 10px;
+    left: 50%;
     transform: translate(-50%, -50%);
+}
+
+.header .title {
+    position: absolute;
+    color: #016b6c;
+    font-size: 4px;
+    top: 8px;
+    transform: translate(0, -50%);
+}
+
+.header #title-right {
+    right: 5px;
+}
+
+.header #title-left {
+    left: 24px;
 }
 
 .content {
@@ -89,10 +117,10 @@ body {
 .carousel-container {
     position: absolute;
     left: 0;
-    top: 11vh;
+    top: 17px;
     width: 100%;
     height: 40vh;
-    background-color: #016b6c;
+    background-color: white;
     display: flex;
     align-items: center;
     justify-content: center;
