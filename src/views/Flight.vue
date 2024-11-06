@@ -155,7 +155,7 @@
 import { onMounted } from 'vue';
 import { requestGet } from '@/request/axios';
 import { ref } from 'vue';
-import { Payment } from '@/components/Payment.vue';
+import Payment from '@/components/Payment.vue';
 
 const props = defineProps(['destination', 'departureTime']);
 const flightInfo = ref([]);
