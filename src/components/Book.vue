@@ -1,21 +1,21 @@
 <template>
     <div>
         <!-- bootstrap buttons -->
-        <div>
-            <button>预定行程</button>
-            <button>管理行程</button>
-            <button>预办登机</button>
-            <button>查询航班状况</button>
+        <div class="main-box">
+            <button class="main-button">预定行程</button>
+            <button class="main-button">管理行程</button>
+            <button class="main-button">预办登机</button>
+            <button class="main-button">查询航班状况</button>
         </div>
 
         <!-- Bootstrap button group -->
-         <!-- 选择后 相应按钮需要高光 -->
-        <div>
-            <button>预定航班</button>
-            <button>一票通</button>
-            <button>兑换机票</button>
-            <button>住宿</button>
-            <button>套票</button>
+        <!-- 选择后 相应按钮需要高光 -->
+        <div class="sub-box">
+            <button class="sub-button">预定航班</button>
+            <button class="sub-button">一票通</button>
+            <button class="sub-button">兑换机票</button>
+            <button class="sub-button">住宿</button>
+            <button class="sub-button">套票</button>
         </div>
 
         <div>
@@ -75,10 +75,12 @@
                 </div>
             </div>
         </div>
-         <!-- 航班搜索 -->
-        <button @click="searchFlight">搜寻航班</button>
+        <!-- 航班搜索 -->
+        <div class="search-box">
+            <button class="search" @click="searchFlight">搜寻航班</button>
+        </div>
     </div>
-    
+
 </template>
 
 <script setup>
@@ -108,3 +110,131 @@ watch(journeyType, (newValue) => {
     disableReturn.value = newValue === '单程';
 });
 </script>
+<style>
+.main-box {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.main-button {
+    text-align: center;
+    border: 0;
+    border-radius: 0;
+    background-color: #f6f6f2;
+    width: 24%;
+    height: 50px;
+    color: #016b6c;
+    font-size: 1em;
+}
+
+.main-button:focus{
+    background-color: #016b6c;
+    color: white;
+}
+
+.sub-box {
+    border-top: 1px solid #e0e0e0;
+    border-bottom: 1px solid #e0e0e0;
+    width: 100%;
+}
+
+.sub-button {
+    width: 100px;
+    border: 0;
+    background-color: white;
+    border-top: 3px solid white;
+    border-bottom: 3px solid white;
+    margin-right: 50px;
+    padding: 8px;
+    font-size: 1em;
+}
+
+.sub-button:focus {
+    color: #016b6c;
+    border-bottom: 3px solid #016b6c;
+}
+
+.form-select,
+.form-control {
+    border: 0;
+}
+
+.col {
+    margin: 1px;
+    border-right: 1px solid #e0e0e0;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.search-box {
+    display: flex;
+    justify-content: flex-end;
+    border-bottom: 1px solid #e0e0e0;
+    height: 50px;
+}
+
+.search {
+    margin-right: 3px;
+    margin-left: 3px;
+    display: inline-block;
+    padding: 12px 80px;
+    border: 0;
+    border-radius: 0px;
+    transition: all 0.2s ease-in;
+    position: relative;
+    overflow: hidden;
+    font-size: 1em;
+    cursor: pointer;
+    color: black;
+    z-index: 1;
+    color: #016b6c;
+    background-color: #f6f6f2;
+}
+
+.search:before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%) scaleY(1) scaleX(1.25);
+    top: 100%;
+    width: 140%;
+    height: 180%;
+    background-color: rgba(0, 0, 0, 0.05);
+    border-radius: 50%;
+    display: block;
+    transition: all 0.5s 0.1s cubic-bezier(0.55, 0, 0.1, 1);
+    z-index: -1;
+}
+
+.search:after {
+    content: "";
+    position: absolute;
+    left: 55%;
+    transform: translateX(-50%) scaleY(1) scaleX(1.45);
+    top: 180%;
+    width: 160%;
+    height: 190%;
+    background-color: #016b6c;
+    border-radius: 50%;
+    display: block;
+    transition: all 0.5s 0.1s cubic-bezier(0.55, 0, 0.1, 1);
+    z-index: -1;
+}
+
+.search:hover {
+    color: #ffffff;
+    border: 0;
+}
+
+.search:hover:before {
+    top: -35%;
+    background-color: #016b6c;
+    transform: translateX(-50%) scaleY(1.3) scaleX(0.8);
+}
+
+.search:hover:after {
+    top: -45%;
+    background-color: #016b6c;
+    transform: translateX(-50%) scaleY(1.3) scaleX(0.8);
+}
+</style>

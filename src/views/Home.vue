@@ -3,9 +3,7 @@
         <Nav />
         <main class="content">
             <div class="carousel-container">
-                <!-- Bootstrap Carousel -->
                 <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
-                    <!-- Carousel Indicators -->
                     <div class="carousel-indicators">
                         <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="0" class="active"
                             aria-current="true" aria-label="Slide 1"></button>
@@ -28,16 +26,27 @@
                     </div>
                 </div>
             </div>
-            <div></div>
+            <div class="book">
+                <Book />
+            </div>
+
         </main>
     </div>
+
 </template>
 
 <script setup>
 import Nav from '../components/Nav.vue';
+import Book from '../components/Book.vue';
 </script>
 
 <style scoped>
+.book {
+    position: relative;
+    margin: 10px;
+    /* transform: translate(0%, 0%); */
+}
+
 body {
     margin: 0;
     font-family: Arial, sans-serif;
@@ -49,15 +58,13 @@ body {
 }
 
 .carousel-container {
-    position: fixed;
-    left: 0;
-    top: 75px;
+    position: relative;
     width: 100%;
     height: 300px;
     background-color: white;
     display: flex;
     align-items: center;
-    /* justify-content: center; */
+    justify-content: center;
     overflow: hidden;
 }
 
@@ -68,9 +75,8 @@ body {
 }
 
 .carousel-container .carousel-indicators {
-    position: fixed;
-    top: 350px;
-    height: 100px;
+    position: relative;
+    top: 650px;
 }
 
 .carousel-container .carousel-indicators button {
