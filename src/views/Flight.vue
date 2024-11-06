@@ -1,5 +1,5 @@
 <template>
-    <div>{{香港}} ---- {{ props.destination }}</div>
+    <div>香港 ---- {{ props.destination.substring(0, 2) }}</div>
     <div v-if="isLoading">
         <h1>loading...</h1>
     </div>
