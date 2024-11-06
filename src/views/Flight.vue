@@ -128,14 +128,14 @@
                     </div>
                     <div class="col">
                         <div>
-                            <span>特惠价格</span><br>
+                            <span v-show="index === 0">特惠价格</span><br>
                             <span>HKD{{ ferry.discountedPrice }}</span><br>
-                            <span>HKD<del>{{ ferry.originalPrice }}</del></span>
+                            <span v-show="index === 0">HKD<del>{{ ferry.originalPrice }}</del></span>
                         </div>
                     </div>
                     <div class="col">
                         <div>
-                            <span>一票通价格</span><br>
+                            <span v-show="index === 0">一票通价格</span><br>
                             <span>HKD{{ Number(ferry.discountedPrice) + Number(selectedFlight.price) }}</span>
                         </div>
                     </div>
