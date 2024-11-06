@@ -86,9 +86,14 @@
                         <div class="col">
                             <button @click="step = 1">选择其他航班</button>
                         </div>
+                        <div class="col">
+                            <button @click="step = 3">组合订购</button>
+                        </div>
                     </div>
                 </div>
-            </div>            
+            </div>
+
+
         </div>
 
         <div v-if="step === 3">
@@ -111,13 +116,15 @@ onMounted(async () => {
     await searchFlight()
 })
 async function searchFlight() {
-    console.log(props.destination, props.departureTime);
+    isLoading.value = true;
     flightInfo.value = await requestGet({url: "/api/getFlightInfo?" + "destination=" + props.destination + "&departureTime=" + props.departureTime})
     isLoading.value = false;
 }
-const selectFlight = (flight) => {
+const selectFlight = async(flight) => {
+    isLoading.value = true;
     selectedFlight.value = flight;
     step.value = 2;
+    isLoading.value = false;
 }
 
 </script>
