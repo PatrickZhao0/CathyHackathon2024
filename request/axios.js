@@ -16,3 +16,17 @@ export async function requestGet({url, errfn}) {
         throw new Error(error);
     }
 }
+
+export async function requestPost({url, data, errfn}) {
+    const config = {
+        headers: {}
+    };
+    config.headers["Content-Type"] = 'application/json';
+    try {
+        const response = await axios.post(GlobalUrl + url, data, config);
+        return response.data
+    } catch (error) {
+        errfn && errfn(error);
+        throw new Error(error);
+    }
+}
