@@ -53,34 +53,34 @@
         </div>
 
         <div v-if="step === 2">
-            <div class="card" v-for="flight in flightInfo" :key="flight.id">
+            <div class="card">
                 <div class="card-body">
                     <div class="row">
                         <div class="col">
                             <div>
-                                <span>{{ (flight.departureTime).split(',')[1] }}</span><br>
-                                <span>{{ flight.departureCode }}</span>
+                                <span>{{ (selectedFlight.departureTime).split(',')[1] }}</span><br>
+                                <span>{{ selectedFlight.departureCode }}</span>
                             </div>
                         </div>
                         <div class="col">
                             <div>
-                                <span>{{ flight.flightDuration }}</span>
+                                <span>{{ selectedFlight.flightDuration }}</span>
                             </div>
                         </div>
                         <div class="col">
                             <div>
-                                <span>{{ (flight.destinationTime).split(',')[1] }}</span><br>
-                                <span>{{ flight.destinationCode }}</span>
+                                <span>{{ (selectedFlight.destinationTime).split(',')[1] }}</span><br>
+                                <span>{{ selectedFlight.destinationCode }}</span>
                             </div>
                         </div>
                         <div class="col">
                             <div>
-                                <span>{{ flight.flightNumber }}</span>
+                                <span>{{ selectedFlight.flightNumber }}</span>
                             </div>
                         </div>
                         <div class="col">
-                            <div @click="selectFlight(flight)">
-                                <span>{{ flight.price }}</span>
+                            <div>
+                                <span>经济</span> <span>{{ selectedFlight.price }}</span>
                             </div>
                         </div>
                         <div class="col">
@@ -93,11 +93,70 @@
                 </div>
             </div>
 
+            <div>
+                <span>排列方式：推荐</span>  <a href="#">出发时间</a>  <a href="#">抵达时间</a>  <a href="#">航行时间</a>  <a href="#">票价</a>
+            </div>
 
+            <div class="card" v-for="(ferry, index) in ferryInfo" :key="index" :v-show="index === 0 || !callapsed">
+                <div class="row">
+                    <div class="col">
+                        <div>
+                            <span v-show="index === 0">{{ (ferry.departureTime).split(',')[0].split('-')[0] }} 年 {{ (ferry.departureTime).split(',')[0].split('-')[1] }} 月 {{ (ferry.departureTime).split(',')[0].split('-')[2] }} 日</span><br>
+                            <span>{{ (ferry.departureTime).split(',')[1] }}</span><br>
+                            <span v-show="index === 0">{{ ferry.departureCode }}</span><br>
+                            <span v-show="index === 0">{{ ferry.departurePort }}</span>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div>
+                            <span>{{ ferry.duration }}</span>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div>
+                            <span v-show="index === 0">{{ (ferry.arrivalTime).split(',')[0].split('-')[0] }} 年 {{ (ferry.arrivalTime).split(',')[0].split('-')[1] }} 月 {{ (ferry.arrivalTime).split(',')[0].split('-')[2] }} 日</span><br>
+                            <span>{{ (ferry.arrivalTime).split(',')[1] }}</span><br>
+                            <span v-show="index === 0">{{ ferry.destinationCode }}</span><br>
+                            <span v-show="index === 0">{{ ferry.arrivalPort }}</span>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div>
+                            <span>{{ selectedFlight.flightNumber }}</span>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div>
+                            <span>{{ ferry.planId }}</span><br>
+                            <a @click="callapsed = !callapsed">{{ callapsed ? '选择其他班次' : '收起' }}</a>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div>
+                            <span>特惠价格</span>
+                            <span>{{ ferry.discountPrice }}</span>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div>
+                            <span>特惠价格</span>
+                            <span>{{ ferry.discountPrice }}</span>
+                            <span><del>{{ ferry.originalPrice }}</del></span>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div>
+                            <span>一票通价格</span>
+                            <span>{{ ferry.discountPrice + selectedFlight.price }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
         </div>
 
         <div v-if="step === 3">
-            <h1>step 3</h1>
+            
         </div>
     </div>
 </template>
@@ -120,11 +179,15 @@ async function searchFlight() {
     flightInfo.value = await requestGet({url: "/api/getFlightInfo?" + "destination=" + props.destination + "&departureTime=" + props.departureTime})
     isLoading.value = false;
 }
+const ferryInfo = ref([]);
 const selectFlight = async(flight) => {
     isLoading.value = true;
     selectedFlight.value = flight;
     step.value = 2;
+    ferryInfo.value = await requestGet({url: "/api/getFerryTicket?" + "departureTime=" + props.departureTime + "," + selectedFlight.value.departureTime})
     isLoading.value = false;
 }
+
+const callapsed = ref(true);
 
 </script>
