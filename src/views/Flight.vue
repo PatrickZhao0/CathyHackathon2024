@@ -97,7 +97,7 @@
                 <span>排列方式：推荐</span>  <a href="#">出发时间</a>  <a href="#">抵达时间</a>  <a href="#">航行时间</a>  <a href="#">票价</a>
             </div>
 
-            <div class="card" v-for="(ferry, index) in ferryInfo" :key="index" :v-if="index === 0 || !callapsed">
+            <div class="card" v-for="(ferry, index) in ferryInfo" :key="index" v-show="index === 0 || !callapsed">
                 <div class="row">
                     <div class="col">
                         <div>
@@ -122,26 +122,21 @@
                     </div>
                     <div class="col">
                         <div>
-                            <span>{{ selectedFlight.flightNumber }}</span>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div>
                             <span>{{ ferry.planId }}</span><br>
                             <a v-show="index === 0" @click="callapsed = !callapsed">{{ callapsed ? '选择其他班次' : '收起' }}</a>
                         </div>
                     </div>
                     <div class="col">
                         <div>
-                            <span>特惠价格</span>
-                            <span>{{ ferry.discountedPrice }}</span>
-                            <span><del>{{ ferry.originalPrice }}</del></span>
+                            <span>特惠价格</span><br>
+                            <span>HKD{{ ferry.discountedPrice }}</span><br>
+                            <span>HKD<del>{{ ferry.originalPrice }}</del></span>
                         </div>
                     </div>
                     <div class="col">
                         <div>
-                            <span>一票通价格</span>
-                            <span>{{ Number(ferry.discountedPrice) + Number(selectedFlight.price) }}</span>
+                            <span>一票通价格</span><br>
+                            <span>HKD{{ Number(ferry.discountedPrice) + Number(selectedFlight.price) }}</span>
                         </div>
                     </div>
                 </div>
