@@ -3,15 +3,38 @@
         <h1>loading...</h1>
     </div>
     <div v-else>
-        <div v-for="flight in flightInfo" :key="flight.id">
-            <p>{{ flight.number }}</p>
-            <p>{{ flight.departure }}</p>
-            <p>{{ flight.destination }}</p>
-            <p>{{ flight.departureTime }}</p>
-            <p>{{ flight.destinationTime }}</p>
-            <p>{{ flight.price }}</p>
-            <p>{{ flight.flightClass }}</p>
-            <p>{{ flight.flightDuration }}</p>
+        <div class="card" v-for="flight in flightInfo" :key="flight.id">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col">
+                        <div>
+                            <span>{{ (flight.departureTime).split(',')[1] }}</span><br>
+                            <span>{{ flight.departureCode }}</span>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div>
+                            <span>{{ flight.flightDuration }}</span>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div>
+                            <span>{{ (flight.destinationTime).split(',')[1] }}</span><br>
+                            <span>{{ flight.destinationCode }}</span>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div>
+                            <span>{{ flight.flightNumber }}</span>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div>
+                            <span>{{ flight.price }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </template>
