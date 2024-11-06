@@ -29,7 +29,7 @@ onMounted(async () => {
 })
 async function searchFlight() {
     console.log(props.destination, props.departureTime);
-    flightInfo.value = await requestGet({url: "/api/getFlightInfo?" + props.destination + "&" + props.departureTime})
+    flightInfo.value = await requestGet({url: "/api/getFlightInfo?" + "destination=" + props.destination + "&departureTime=" + props.departureTime})
     isLoading.value = false;
 }
 </script>
