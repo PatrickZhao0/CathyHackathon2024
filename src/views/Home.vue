@@ -1,9 +1,10 @@
 <template>
     <div>
-        <Payment :amount="200"/>
+        <Nav/>
+        <span>首页</span>
     </div>
 </template>
 
 <script setup>
-import Payment from '../components/Payment.vue';
+import Nav from '../components/Nav.vue';
 </script>
