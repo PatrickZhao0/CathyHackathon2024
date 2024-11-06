@@ -1,5 +1,5 @@
 <template>
-    <div>{{selectedFlight.departure}} ---- {{ selectedFlight.destination }}</div>
+    <div>{{香港}} ---- {{ props.destination }}</div>
     <div v-if="isLoading">
         <h1>loading...</h1>
     </div>
