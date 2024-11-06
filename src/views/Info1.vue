@@ -6,9 +6,11 @@
             <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.</span>
         </div>
         <iframe width="560" height="315" src="https://www.youtube.com/embed/-LDPZfFcJCY?si=lIE7mw9LzeWyktAv" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        <Book/>
     </div>  
 </template>
 
 <script setup>
 import Nav from '../components/Nav.vue';
+import Book from '../components/Book.vue';
 </script>

@@ -35,7 +35,6 @@
 
 <script setup>
 import Nav from '../components/Nav.vue';
-import Book from '../components/Book.vue';
 </script>
 
 <style scoped>

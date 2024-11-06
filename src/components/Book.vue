@@ -94,7 +94,7 @@ const ticket = ref({
 });
 const disableReturn = ref(false);
 const dateToString = (date) => {
-    return date.toISOString().split('T')[0]
+    return new Date(date).toISOString().split('T')[0]
 }
 const searchFlight = () => {
     ticket.value.departureTime = dateToString(ticket.value.departureTime);
