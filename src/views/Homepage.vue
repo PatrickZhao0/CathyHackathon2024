@@ -23,30 +23,18 @@
 
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <img src="../assets/homepage/images/consultation1.jpg" class="d-block w-100" alt="Image 1">
+                        <img src="../assets/homepage/images/info1.jpg" class="d-block w-100" alt="Image 1">
                     </div>
                     <div class="carousel-item">
-                        <img src="../assets/homepage/images/consultation2.jpg" class="d-block w-100" alt="Image 2">
+                        <img src="../assets/homepage/images/info2.jpg" class="d-block w-100" alt="Image 2">
                     </div>
                     <div class="carousel-item">
-                        <img src="../assets/homepage/images/consultation3.jpg" class="d-block w-100" alt="Image 3">
+                        <img src="../assets/homepage/images/info3.jpg" class="d-block w-100" alt="Image 3">
                     </div>
                 </div>
-
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample"
-                    data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExample"
-                    data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
             </div>
         </div>
-        <p>这是页面的内容部分。</p>
-        <p>向下滚动时，头部将保持固定。</p>
+        <div></div>
     </main>
 </template>
 
@@ -67,28 +55,26 @@ body {
     top: 0;
     left: 0;
     width: 100%;
-    height: 15px;
+    height: 70px;
     background: #f6f6f2;
     color: white;
-    padding: 1px;
     z-index: 1000;
     overflow: hidden;
 }
 
 .header .logo {
     position: absolute;
-    top: 8px;
-    left: 5px;
-    height: 15px;
+    top: 50%;
+    height: 70px;
     transform: translate(0%, -50%);
 }
 
 .header #multilogo {
-    left: 5px;
+    left: 15px;
 }
 
 .header #cathy {
-    height: 10px;
+    height: 50px;
     left: 50%;
     transform: translate(-50%, -50%);
 }
@@ -96,17 +82,17 @@ body {
 .header .title {
     position: absolute;
     color: #016b6c;
-    font-size: 4px;
-    top: 8px;
+    font-size: 20px;
+    top: 50%;
     transform: translate(0, -50%);
 }
 
 .header #title-right {
-    right: 5px;
+    right: 25px;
 }
 
 .header #title-left {
-    left: 24px;
+    left: 100px;
 }
 
 .content {
@@ -115,35 +101,35 @@ body {
 }
 
 .carousel-container {
-    position: absolute;
+    position: fixed;
     left: 0;
-    top: 17px;
+    top: 75px;
     width: 100%;
-    height: 40vh;
+    height: 300px;
     background-color: white;
     display: flex;
     align-items: center;
-    justify-content: center;
+    /* justify-content: center; */
     overflow: hidden;
 }
 
-.carousel-container .carousel-indicators {
+.carousel-container .carousel-inner {
     position: relative;
-    top: 90vh;
-    height: 20px;
+    left: 0;
+    width: 200vh;
+}
+
+.carousel-container .carousel-indicators {
+    position: fixed;
+    top: 350px;
+    height: 100px;
 }
 
 .carousel-container .carousel-indicators button {
     background-color: #fff;
     /* Customize the color */
-    width: 20px;
-    height: 1px;
+    width: 100px;
+    height: 5px;
     border: none;
-}
-
-.carousel-control-prev-icon,
-.carousel-control-next-icon {
-    background-size: 60%;
-    /* Reduce the size of the icons */
 }
 </style>
