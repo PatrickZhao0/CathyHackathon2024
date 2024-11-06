@@ -9,6 +9,7 @@ export async function requestGet({url, errfn}) {
     config.headers["Content-Type"] = 'application/json';
 
     try {
+        console.log(GlobalUrl + url);
         const response = await axios.get(GlobalUrl + url, config);
         return response.data
     } catch (error) {

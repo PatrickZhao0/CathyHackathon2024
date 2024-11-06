@@ -39,10 +39,10 @@
                     <label for="destination">目的地</label>
                     <select v-model="ticket.destination" class="form-select">
                         <option selected value="">请选择目的地</option>
-                        <option value="日本成田机场">日本成田机场</option>
-                        <option value="日本关西机场">日本关西机场</option>
-                        <option value="日本中部机场">日本中部机场</option>
-                        <option value="日本新千岁机场">日本新千岁机场</option>
+                        <option value="东京成田机场">东京成田机场</option>
+                        <option value="大阪关西机场">大阪关西机场</option>
+                        <option value="名古屋中部机场">名古屋中部机场</option>
+                        <option value="札幌新千岁机场">札幌新千岁机场</option>
                     </select>
                 </div>
             </div>
