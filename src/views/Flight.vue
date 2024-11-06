@@ -88,7 +88,7 @@
                             <button @click="step = 1">选择其他航班</button>
                         </div>
                         <div class="col">
-                            <button @click="step = 3">组合订购</button>
+                            <button @click="goToPayment">组合订购</button>
                         </div>
                     </div>
                 </div>
@@ -98,7 +98,7 @@
                 <span>排列方式：推荐</span>  <a href="#">出发时间</a>  <a href="#">抵达时间</a>  <a href="#">航行时间</a>  <a href="#">票价</a>
             </div>
 
-            <div class="card" v-for="(ferry, index) in ferryInfo" :key="index" v-show="index === 0 || !callapsed">
+            <div class="card" @click="totalAmount = ferry.discountedPrice + selectedFlight.price" v-for="(ferry, index) in ferryInfo" :key="index" v-show="index === 0 || !callapsed">
                 <div class="row">
                     <div class="col">
                         <div>
@@ -137,7 +137,7 @@
                     <div class="col">
                         <div>
                             <span v-show="index === 0">一票通价格</span><br>
-                            <span>HKD{{ Number(ferry.discountedPrice) + Number(selectedFlight.price) }}</span>
+                            <span>HKD{{ ferry.discountedPrice + selectedFlight.price }}</span>
                         </div>
                     </div>
                 </div>
@@ -146,7 +146,7 @@
         </div>
 
         <div v-if="step === 3">
-            
+            <Payment :amount="totalAmount" />
         </div>
     </div>
 </template>
@@ -155,12 +155,14 @@
 import { onMounted } from 'vue';
 import { requestGet } from '@/request/axios';
 import { ref } from 'vue';
+import { Payment } from '@/components/Payment.vue';
 
 const props = defineProps(['destination', 'departureTime']);
 const flightInfo = ref([]);
 const isLoading = ref(true);
 const step = ref(1);
 const selectedFlight = ref(null);
+const totalAmount = ref(0);
 onMounted(async () => {
     await searchFlight()
 })
@@ -176,6 +178,11 @@ const selectFlight = async(flight) => {
     step.value = 2;
     ferryInfo.value = await requestGet({url: "/api/getFerryTicket?" + "departureTime=" + props.departureTime + "," + selectedFlight.value.departureTime})
     isLoading.value = false;
+}
+const goToPayment = () => {
+    if (totalAmount.value > 0) {
+        step.value = 3;
+    }
 }
 
 const callapsed = ref(true);
