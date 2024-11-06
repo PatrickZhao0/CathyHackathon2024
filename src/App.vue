@@ -1,4 +1,21 @@
-<script setup>
+<template>
+  <div id="app">
+    <BootstrapDemo />
+  </div>
+</template>
+
+<script>
+import BootstrapDemo from './components/BootstrapDemo.vue';
+
+export default {
+  components: {
+    BootstrapDemo,
+  },
+};
+</script>
+
+
+<!-- <script setup>
 import { RouterLink, RouterView } from 'vue-router'
 import HelloWorld from './components/HelloWorld.vue'
 </script>
@@ -82,4 +99,4 @@ nav a:first-of-type {
     margin-top: 1rem;
   }
 }
-</style>
+</style> -->
