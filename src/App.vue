@@ -17,6 +17,6 @@ import { onMounted, ref } from 'vue'
 const data = ref(null)
 
 onMounted(async () => {
-  data.value = await requestGet({url: '/getUserInfo', errfn: (error) => {console.log(error)}})
+  data.value = await requestGet({url: 'api/getUserInfo?member_id=1', errfn: (error) => {console.log(error)}})
 })
 </script>
