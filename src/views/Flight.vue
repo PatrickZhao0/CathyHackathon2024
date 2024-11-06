@@ -18,7 +18,7 @@
 
 <script setup>
 import { onMounted } from 'vue';
-import { requestGet } from '../request/axios';
+import { requestGet } from '@/request/axios';
 import { ref } from 'vue';
 
 const props = defineProps(['destination', 'departureTime']);
