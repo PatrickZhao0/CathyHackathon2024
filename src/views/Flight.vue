@@ -247,9 +247,8 @@
                         </div>
                         <div class="col">
                             <div>
-                                <span>特惠价格</span><br>
+                                <span>二等座</span><br>
                                 <span>RMB{{ trainInfo.discountedPrice }}</span><br>
-                                <span>RMB<del>{{ trainInfo.originalPrice }}</del></span>
                             </div>
                         </div>
                         <div class="col">
@@ -367,9 +366,8 @@
                         </div>
                         <div class="col">
                             <div>
-                                <span>特惠价格</span><br>
+                                <span>预估价格</span><br>
                                 <span>RMB{{ limoInfo.discountedPrice }}</span><br>
-                                <span>RMB<del>{{ limoInfo.originalPrice }}</del></span>
                             </div>
                         </div>
                         <div class="col">
