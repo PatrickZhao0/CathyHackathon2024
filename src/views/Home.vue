@@ -15,7 +15,9 @@
 
                     <div class="carousel-inner">
                         <div class="carousel-item active">
-                            <img src="../assets/homepage/images/info1.jpg" class="d-block w-100" alt="Image 1">
+                            <a href="/info1">
+                                <img src="../assets/homepage/images/info1.jpg" class="d-block w-100" alt="Image 1">
+                            </a>
                         </div>
                         <div class="carousel-item">
                             <img src="../assets/homepage/images/info2.jpg" class="d-block w-100" alt="Image 2">
@@ -29,8 +31,8 @@
             <div class="book">
                 <Book />
             </div>
-
         </main>
+        <Foot />
     </div>
 
 </template>
@@ -38,6 +40,7 @@
 <script setup>
 import Nav from '../components/Nav.vue';
 import Book from '../components/Book.vue';
+import Foot from '../components/Foot.vue';
 </script>
 
 <style scoped>
