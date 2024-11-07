@@ -153,7 +153,11 @@
                                         (ferry.departureTime).split(',')[0].split('-')[2] }} 日</span><br>
                                 <span>{{ (ferry.departureTime).split(',')[1] }}</span><br>
                                 <span v-show="index === 0">{{ ferry.departureCode }}</span><br>
-                                <span v-show="index === 0">{{ ferry.departurePort }}</span>
+<!--                                <span v-show="index === 0">{{ ferry.departurePort }}</span>-->
+                              <select v-show="index === 0">
+                                <option selected :value="ferry.departurePort">{{ ferry.departurePort }}</option>
+                                <option value="深圳湾机场码头">深圳湾机场码头</option>
+                              </select>
                             </div>
                         </div>
                         <div class="col">
