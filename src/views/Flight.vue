@@ -125,7 +125,7 @@
                         href="#">票价</a>
                 </div>
 
-                <div class="card" @click="totalAmount = ferry.discountedPrice + selectedFlight.price"
+                <div class="card" @click="calcTotalAmount(ferry)" :style="highlight(ferry.planId)"
                     v-for="(ferry, index) in ferryInfo" :key="index" v-show="index === 0 || !callapsed">
                     <div class="row">
                         <div class="col">
@@ -179,6 +179,160 @@
                     </div>
                 </div>
 
+                <div class="card" @click="calcTotalAmount(trainInfo)" :style="highlight(trainInfo.planId)">
+                    <div class="row">
+                        <div class="col">
+                            <span>高铁</span>
+                        </div>
+                        <div class="col">
+                            <div>
+                                <span>{{ (trainInfo.departureTime).split(',')[0].split('-')[0] }} 年 {{
+                                    (trainInfo.departureTime).split(',')[0].split('-')[1] }} 月 {{
+                                        (trainInfo.departureTime).split(',')[0].split('-')[2] }} 日</span><br>
+                                <span>{{ (trainInfo.departureTime).split(',')[1] }}</span><br>
+                                <span>{{ trainInfo.departureCode }}</span><br>
+                                <span>{{ trainInfo.departurePort }}</span>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div>
+                                <span>{{ trainInfo.duration }}</span>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div>
+                                <span>{{ (trainInfo.arrivalTime).split(',')[0].split('-')[0] }} 年 {{
+                                    (trainInfo.arrivalTime).split(',')[0].split('-')[1] }} 月 {{
+                                        (trainInfo.arrivalTime).split(',')[0].split('-')[2] }} 日</span><br>
+                                <span>{{ (trainInfo.arrivalTime).split(',')[1] }}</span><br>
+                                <span>{{ trainInfo.destinationCode }}</span><br>
+                                <span>{{ trainInfo.arrivalPort }}</span>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div>
+                                <span>{{ trainInfo.planId }}</span>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div>
+                                <span>特惠价格</span><br>
+                                <span>HKD{{ trainInfo.discountedPrice }}</span><br>
+                                <span>HKD<del>{{ trainInfo.originalPrice }}</del></span>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div>
+                                <span>一票通价格</span><br>
+                                <span>HKD{{ trainInfo.discountedPrice + selectedFlight.price }}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" @click="calcTotalAmount(busInfo)" :style="highlight(busInfo.planId)">
+                    <div class="row">
+                        <div class="col">
+                            <span>巴士</span>
+                        </div>
+                        <div class="col">
+                            <div>
+                                <span>{{ (busInfo.departureTime).split(',')[0].split('-')[0] }} 年 {{
+                                    (busInfo.departureTime).split(',')[0].split('-')[1] }} 月 {{
+                                        (busInfo.departureTime).split(',')[0].split('-')[2] }} 日</span><br>
+                                <span>{{ (busInfo.departureTime).split(',')[1] }}</span><br>
+                                <span>{{ busInfo.departureCode }}</span><br>
+                                <span>{{ busInfo.departurePort }}</span>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div>
+                                <span>{{ busInfo.duration }}</span>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div>
+                                <span>{{ (busInfo.arrivalTime).split(',')[0].split('-')[0] }} 年 {{
+                                    (busInfo.arrivalTime).split(',')[0].split('-')[1] }} 月 {{
+                                        (busInfo.arrivalTime).split(',')[0].split('-')[2] }} 日</span><br>
+                                <span>{{ (busInfo.arrivalTime).split(',')[1] }}</span><br>
+                                <span>{{ busInfo.destinationCode }}</span><br>
+                                <span>{{ busInfo.arrivalPort }}</span>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div>
+                                <span>{{ busInfo.planId }}</span>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div>
+                                <span>特惠价格</span><br>
+                                <span>HKD{{ busInfo.discountedPrice }}</span><br>
+                                <span>HKD<del>{{ busInfo.originalPrice }}</del></span>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div>
+                                <span>一票通价格</span><br>
+                                <span>HKD{{ busInfo.discountedPrice + selectedFlight.price }}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card" @click="calcTotalAmount(limoInfo)" :style="highlight(limoInfo.planId)">
+                    <div class="row">
+                        <div class="col">
+                            <span>专车</span>
+                        </div>
+                        <div class="col">
+                            <div>
+                                <span>{{ (limoInfo.departureTime).split(',')[0].split('-')[0] }} 年 {{
+                                    (limoInfo.departureTime).split(',')[0].split('-')[1] }} 月 {{
+                                        (limoInfo.departureTime).split(',')[0].split('-')[2] }} 日</span><br>
+                                <span>{{ (limoInfo.departureTime).split(',')[1] }}</span><br>
+                                <span>{{ limoInfo.departureCode }}</span><br>
+                                <span>{{ limoInfo.departurePort }}</span>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div>
+                                <span>{{ limoInfo.duration }}</span>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div>
+                                <span>{{ (limoInfo.arrivalTime).split(',')[0].split('-')[0] }} 年 {{
+                                    (limoInfo.arrivalTime).split(',')[0].split('-')[1] }} 月 {{
+                                        (limoInfo.arrivalTime).split(',')[0].split('-')[2] }} 日</span><br>
+                                <span>{{ (limoInfo.arrivalTime).split(',')[1] }}</span><br>
+                                <span>{{ limoInfo.destinationCode }}</span><br>
+                                <span>{{ limoInfo.arrivalPort }}</span>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div>
+                                <span>{{ limoInfo.planId }}</span><br>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div>
+                                <span>特惠价格</span><br>
+                                <span>HKD{{ limoInfo.discountedPrice }}</span><br>
+                                <span>HKD<del>{{ limoInfo.originalPrice }}</del></span>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div>
+                                <span>一票通价格</span><br>
+                                <span>HKD{{ limoInfo.discountedPrice + selectedFlight.price }}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
             </div>
 
             <div v-if="step === 3">
@@ -216,6 +370,9 @@ async function searchFlight() {
     isLoading.value = false;
 }
 const ferryInfo = ref([]);
+const trainInfo = ref();
+const busInfo = ref();
+const limoInfo = ref();
 const selectFlight = async (flight) => {
     isLoading.value = true;
     selectedFlight.value = flight;
@@ -223,10 +380,26 @@ const selectFlight = async (flight) => {
     // ferryInfo.value = await requestGet({ url: "/api/getFerryTicket?" + "departureTime=" + props.departureTime + "," + selectedFlight.value.departureTime })
 
     //mock
+    trainInfo.value = await requestGet({url: "/api/getRailwayTicket"})
+    busInfo.value = await requestGet({url: "/api/getBusTicket"})
+    limoInfo.value = await requestGet({url: "/api/getLimoTicket"})
     ferryInfo.value = [{ "id": 0, "planId": "CX9816", "departureTime": "2024-11-16,13:00", "arrivalTime": "2024-11-16,13:30", "departurePort": "蛇口邮轮母港", "arrivalPort": "香港国际机场客运大楼1", "originalPrice": 310.00, "discountedPrice": 170.00, "departureCode": "ZYK", "destinationCode": "HKG", "duration": "30min" }, { "id": 0, "planId": "CX9808", "departureTime": "2024-11-16,12:00", "arrivalTime": "2024-11-16,12:30", "departurePort": "蛇口邮轮母港", "arrivalPort": "香港国际机场客运大楼1", "originalPrice": 310.00, "discountedPrice": 170.00, "departureCode": "ZYK", "destinationCode": "HKG", "duration": "30min" }, { "id": 0, "planId": "CX9806", "departureTime": "2024-11-16,11:00", "arrivalTime": "2024-11-16,11:30", "departurePort": "蛇口邮轮母港", "arrivalPort": "香港国际机场客运大楼1", "originalPrice": 310.00, "discountedPrice": 170.00, "departureCode": "ZYK", "destinationCode": "HKG", "duration": "30min" }, { "id": 0, "planId": "CX9804", "departureTime": "2024-11-16,10:00", "arrivalTime": "2024-11-16,10:30", "departurePort": "蛇口邮轮母港", "arrivalPort": "香港国际机场客运大楼1", "originalPrice": 310.00, "discountedPrice": 170.00, "departureCode": "ZYK", "destinationCode": "HKG", "duration": "30min" }, { "id": 0, "planId": "CX9802", "departureTime": "2024-11-16,08:45", "arrivalTime": "2024-11-16,09:15", "departurePort": "蛇口邮轮母港", "arrivalPort": "香港国际机场客运大楼1", "originalPrice": 310.00, "discountedPrice": 170.00, "departureCode": "ZYK", "destinationCode": "HKG", "duration": "30min" }, { "id": 0, "planId": "CX9800", "departureTime": "2024-11-16,07:15", "arrivalTime": "2024-11-16,07:45", "departurePort": "蛇口邮轮母港", "arrivalPort": "香港国际机场客运大楼1", "originalPrice": 310.00, "discountedPrice": 170.00, "departureCode": "ZYK", "destinationCode": "HKG", "duration": "30min" }, { "id": 0, "planId": "B015", "departureTime": "2024-11-16,12:00", "arrivalTime": "2024-11-16,13:40", "departurePort": "皇岗汽车站", "arrivalPort": "香港国际机场", "originalPrice": 80, "discountedPrice": 0, "departureCode": null, "destinationCode": "HKG", "duration": "1h40min" }, { "id": 0, "planId": "G5643", "departureTime": "2024-11-16,12:08", "arrivalTime": "2024-11-16,12:26", "departurePort": "深圳北站", "arrivalPort": "香港西九龙", "originalPrice": null, "discountedPrice": 75, "departureCode": null, "destinationCode": null, "duration": "18min" }, { "id": 0, "planId": "商务车", "departureTime": "2024-11-16,12:35", "arrivalTime": "2024-11-16,13:35", "departurePort": "南方科技大学", "arrivalPort": "香港国际机场", "originalPrice": null, "discountedPrice": 750, "departureCode": null, "destinationCode": null, "duration": "1h" }]
 
     isLoading.value = false;
 }
+const calcTotalAmount = (transport) => {
+    totalAmount.value = transport.discountedPrice + selectedFlight.value.price;
+    highlightPlanId.value = transport.planId;
+}
+const highlightPlanId = ref()
+const highlight = (planId) => {
+    if (highlightPlanId.value === planId) {
+        return {
+            backgroundColor: '#f6f6f2',
+        }
+    }
+}
+    
 const goToPayment = () => {
     if (totalAmount.value > 0) {
         step.value = 3;
