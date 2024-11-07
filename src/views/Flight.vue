@@ -129,6 +129,9 @@
                     v-for="(ferry, index) in ferryInfo" :key="index" v-show="index === 0 || !callapsed">
                     <div class="row">
                         <div class="col">
+                            <span v-show="index === 0">巴士</span>
+                        </div>
+                        <div class="col">
                             <div>
                                 <span v-show="index === 0">{{ (ferry.departureTime).split(',')[0].split('-')[0] }} 年 {{
                                     (ferry.departureTime).split(',')[0].split('-')[1] }} 月 {{
